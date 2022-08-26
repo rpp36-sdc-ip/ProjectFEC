@@ -17,12 +17,13 @@ app.use(express.json());
 app.use(express.static(__dirname + '/../client/dist'));
 
 let apiUrl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
+let apiUrl2 = 'http://localhost:8080';
 const config = require('../config.js');
 
 app.get('/products/:id', (req, res) => {
   // let id = req.body.id;
   let id = req.params.id;
-  let apiProductId = apiUrl + `/products/${id}`;
+  let apiProductId = apiUrl2 + `/products/${id}`;
   apiGet(apiProductId)
     .then(result => {
       res.status(200).send(result.data);
@@ -35,7 +36,7 @@ app.get('/products/:id', (req, res) => {
 app.get('/products/:id/related', (req, res) => {
   // let id = req.body.id;
   let id = req.params.id;
-  let apiProductIdRelated = apiUrl + `/products/${id}/related`;
+  let apiProductIdRelated = apiUrl2 + `/products/${id}/related`;
   apiGet(apiProductIdRelated)
     .then(result => {
       res.status(200).send(result.data);
@@ -47,7 +48,7 @@ app.get('/products/:id/related', (req, res) => {
 
 app.get('/products/:id/styles/', (req, res) => {
   let id = req.params.id;
-  let apiProductStyles = apiUrl + `/products/${id}/styles`;
+  let apiProductStyles = apiUrl2 + `/products/${id}/styles`;
   apiGet(apiProductStyles)
     .then(result => {
       res.status(200).send(result.data);
